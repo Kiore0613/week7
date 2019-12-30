@@ -58,7 +58,23 @@
     </div>
     <div class="group-container">
       <label for="telephone">Telephone number: </label>
-      <input class="input-form" type="text" id="telephone" name="telephone" />
+      <input
+        class="input-form"
+        type="text"
+        id="telephone"
+        name="telephone"
+        formControlName="telephone"
+      />
+      <div
+        class="error-text error"
+        *ngIf="form.get('telephone').touched && form.get('telephone').invalid"
+      >
+        just letters
+        <div
+          class="error-text error"
+          *ngIf="telephone?.hasError('cannotContainsLetters')"
+        ></div>
+      </div>
     </div>
     <div class="group-container">
       <label for="url">Personal site URL: </label>

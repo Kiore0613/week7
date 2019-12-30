@@ -1,3 +1,4 @@
+import { PhoneValidator } from "./../../validators/phone.validator";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
@@ -12,7 +13,8 @@ export class FormComponent implements OnInit {
       Validators.maxLength(4),
       Validators.minLength(15),
       Validators.required
-    ])
+    ]),
+    telephone: new FormControl("", PhoneValidator.cannotContainLetters)
   });
   constructor() {}
 
