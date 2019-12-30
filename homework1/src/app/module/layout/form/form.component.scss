@@ -1,0 +1,78 @@
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/variables";
+
+.container {
+  display: grid;
+}
+
+.input-form {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 24px auto;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+label {
+  margin: 16px;
+  padding: 4px;
+  border: 1px solid $secondary-dark;
+  border-radius: 8px;
+  font-size: $text-size;
+  font-family: $font-family;
+}
+
+.input-form.ng-touched.ng-invalid {
+  border: 2px solid $error-color;
+}
+
+.error {
+  margin: 16px;
+  border: 2px solid $error-color;
+  border-radius: 4px;
+  background: $warning-color;
+  font-size: $subtitle-size;
+}
+
+.error-text {
+  font-family: $font-family;
+  font-size: $subtitle-size;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-button {
+  display: flex;
+  margin: 0 auto;
+}
+
+.group-container {
+  margin: 8px;
+  padding: 4px;
+}
+
+@include screen-tablet {
+  .container {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .radio-group {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@include screen-laptop {
+  .container {
+    width: 60%;
+    margin: 0 auto;
+  }
+  .radio-group {
+    display: flex;
+    justify-content: center;
+  }
+}
