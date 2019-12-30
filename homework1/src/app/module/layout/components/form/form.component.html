@@ -1,0 +1,294 @@
+<form #form="ngForm" (ngSubmit)="submit(form)">
+  <div class="container" ngModelGroup="formGruop" #formGruop="ngModelGroup">
+    <div class="group-container">
+      <label for="name">Name: </label>
+      <input
+        class="input-form"
+        type="text"
+        id="name"
+        name="name"
+        ngModel
+        #name="ngModel"
+        minlength="4"
+        maxlength="15"
+        required
+      />
+      <div class="error" *ngIf="name.touched && name.invalid">
+        <div class="error-text" *ngIf="name?.errors?.required">
+          Field Name is required
+        </div>
+        <div class="error-text" *ngIf="name?.errors?.minlength">
+          The minimum length is
+          {{ name?.errors?.minlength.requiredLength }} characters
+        </div>
+        <div class="error-text" *ngIf="name?.errors?.maxlength">
+          The maximun length is
+          {{ name?.errors?.maxlength.requiredLength }} characters
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="lastName">Last name: </label>
+      <input
+        class="input-form"
+        type="text"
+        id="lastName"
+        name="lastName"
+        ngModel
+        #lastName="ngModel"
+        minlength="4"
+        maxlength="15"
+        required
+      />
+      <div class="error" *ngIf="lastName.touched && lastName.invalid">
+        <div class="error-text" *ngIf="lastName?.errors?.required">
+          Field Last Name is required
+        </div>
+        <div class="error-text" *ngIf="lastName?.errors?.minlength">
+          The minimum length is
+          {{ lastName?.errors?.minlength.requiredLength }} characters
+        </div>
+        <div class="error-text" *ngIf="lastName?.errors?.maxlength">
+          The maximun length is
+          {{ lastName?.errors?.maxlength.requiredLength }} characters
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="email">Email: </label>
+      <input
+        class="input-form"
+        type="text"
+        id="email"
+        name="email"
+        ngModel
+        #email="ngModel"
+        required
+        appEmail
+      />
+      <div class="error" *ngIf="email.touched && email.invalid">
+        <div class="error-text" *ngIf="email?.errors?.required">
+          Field Email is required
+        </div>
+        <div class="error-text" *ngIf="email?.errors?.invalidEmailFormat">
+          The Email format is invalid
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="password">Password: </label>
+      <input
+        class="input-form"
+        type="password"
+        id="password"
+        name="password"
+        ngModel
+        #password="ngModel"
+        minlength="6"
+        required
+      />
+      <div class="error" *ngIf="password.touched && password.invalid">
+        <div class="error-text" *ngIf="password?.errors?.required">
+          Field Password is required
+        </div>
+        <div class="error-text" *ngIf="password?.errors?.minlength">
+          The minimum length is
+          {{ password?.errors?.minlength.requiredLength }} characters
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="confirmPassword">Confirm password: </label>
+      <input
+        class="input-form"
+        type="password"
+        [pattern]="password.value"
+        id="confirmPassword"
+        name="confirmPassword"
+        ngModel
+        #confirmPassword="ngModel"
+        minlength="6"
+        required
+      />
+      <div
+        class="error"
+        *ngIf="confirmPassword.touched && confirmPassword.invalid"
+      >
+        <div class="error-text" *ngIf="confirmPassword?.errors?.required">
+          Field Confirm Password is required
+        </div>
+        <div class="error-text" *ngIf="confirmPassword?.errors?.minlength">
+          The minimum length is
+          {{ confirmPassword?.errors?.minlength.requiredLength }} digits
+        </div>
+        <div class="error-text" *ngIf="confirmPassword?.errors?.pattern">
+          Passwords dont match
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="birthDate">Birth date: </label>
+      <input
+        class="input-form"
+        type="date"
+        id="birthDate"
+        name="birthDate"
+        ngModel
+        #birthDate="ngModel"
+        appBirthdate
+        required
+      />
+      <div class="error" *ngIf="birthDate.touched && birthDate.invalid">
+        <div class="error-text" *ngIf="birthDate?.errors?.required">
+          Field Birth date Number is required
+        </div>
+        <div class="error-text" *ngIf="birthDate?.errors?.invalidDate">
+          The BirthDate must be lower than today
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="telephone">Telephone number: </label>
+      <input
+        class="input-form"
+        type="text"
+        id="telephone"
+        name="telephone"
+        ngModel
+        #telephone="ngModel"
+        minlength="8"
+        maxlength="8"
+        appPhone
+        required
+      />
+      <div class="error" *ngIf="telephone.touched && telephone.invalid">
+        <div class="error-text" *ngIf="telephone?.errors?.required">
+          Field Telephone Number is required
+        </div>
+        <div class="error-text" *ngIf="telephone?.errors?.minlength">
+          The minimum length is
+          {{ telephone?.errors?.minlength.requiredLength }} characters
+        </div>
+        <div class="error-text" *ngIf="telephone?.errors?.invalidPhoneFormat">
+          The Telephone format is invalid
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="url">Personal site URL: </label>
+      <input
+        class="input-form"
+        type="text"
+        id="url"
+        name="url"
+        ngModel
+        #url="ngModel"
+        appUrl
+      />
+      <div class="error" *ngIf="url.dirty && url.invalid">
+        <div
+          class="error-text"
+          class="error-text"
+          *ngIf="url?.errors?.invalidUrlFormat"
+        >
+          The URL format is invalid
+        </div>
+      </div>
+    </div>
+    <div class="group-container">
+      <label for="aboutMe">About me: </label>
+      <textarea
+        class="input-form"
+        id="aboutMe"
+        name="aboutMe"
+        ngModel
+        #aboutMe="ngModel"
+        cols="40"
+        rows="10"
+      >
+      </textarea>
+    </div>
+    <div class="group-container radio-group">
+      <div *ngFor="let gender of arrGenres">
+        <label [for]="gender.id">
+          {{ gender.genre }}
+          <input
+            type="radio"
+            [id]="gender.id"
+            name="genre"
+            [(ngModel)]="gender.id"
+            #genre="ngModel"
+            [value]="gender.id"
+            required
+          />
+        </label>
+      </div>
+    </div>
+    <div class="group-container">
+      <label>Country:</label>
+      <select
+        class="input-form"
+        id="country"
+        name="country"
+        [ngModel]="defaultSelect"
+        #country="ngModel"
+        (change)="onSelected(country.value)"
+        required
+      >
+        <option selected disabled [value]="defaultSelect"
+          >Select your country</option
+        >
+        <option *ngFor="let countryItem of arrCountries">
+          {{ countryItem.country }}</option
+        >
+      </select>
+      <div class="error" *ngIf="country.touched && country.invalid">
+        <div class="error-text" *ngIf="country?.errors?.required">
+          Field Name is required
+        </div>
+      </div>
+    </div>
+    <div class="states" [hidden]="!country.valid">
+      <div class="group-container">
+        <label>State:</label>
+        <select
+          class="input-form"
+          id="state"
+          name="state"
+          [ngModel]="defaultState"
+          #state="ngModel"
+          required
+        >
+          <option selected disabled [value]="defaultState"
+            >Select your State</option
+          >
+          <option *ngFor="let stateItem of selectedStates">
+            {{ stateItem }}</option
+          >
+        </select>
+      </div>
+      <div class="error-text"></div>
+    </div>
+    <div class="group-container">
+      <label class="input-form">
+        I Agree
+        <input
+          type="checkbox"
+          id="agree"
+          name="agree"
+          ngModel
+          #agree="ngModel"
+          required
+        />
+      </label>
+      <div class="error" *ngIf="agree.touched && agree.invalid">
+        <div class="error-text" *ngIf="agree?.errors?.required">
+          Field agree is required
+        </div>
+      </div>
+      <button class="input-form" type="submit" [disabled]="!form.valid">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
