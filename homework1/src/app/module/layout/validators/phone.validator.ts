@@ -19,5 +19,15 @@ export class PhoneValidator {
     return isPhoneNumber ? null : invalidPhoneFormat;
   }
 
-  static maxLength(control: AbstractControl) {}
+  static maxLength(control: AbstractControl) {
+    if ((control.value as string).length > 8) {
+      return {
+        phoneMaxlength: {
+          requiredLength: 8
+        }
+      };
+    } else {
+      return null;
+    }
+  }
 }
