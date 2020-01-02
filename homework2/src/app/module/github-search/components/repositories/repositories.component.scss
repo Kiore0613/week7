@@ -1,0 +1,30 @@
+@import "styles/variables.scss";
+
+
+summary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-detail {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 0 auto;
+  border-bottom: 1px solid $primary-color;
+}
+
+.title {
+  display: flex;
+  align-self: flex-start;
+  font-style: oblique;
+  color: $primary-font-color;
+}
+
+.detail {
+  padding: 8px;
+  margin: 16px;
+  font-family: $font-family;
+  font-size: 16px;
+}

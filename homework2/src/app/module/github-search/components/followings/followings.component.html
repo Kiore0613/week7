@@ -1,1 +1,23 @@
-<p>followings works!</p>
+<details [open]="isOpen">
+  <summary>
+    <div class="card-detail">
+      <span class="detail">Followings </span>
+  </div>
+  </summary>
+    <details [open]="isOpen">
+      <summary>
+        <img src="https://picsum.photos/200/300" alt="">
+        <h2>Name</h2>
+      </summary>
+        <div class="card-container">
+          <div class="card-user">
+            <img src="https://picsum.photos/200/300" alt="" class="img-follower">
+            <span>Kiore0613</span>
+          </div>
+          <div class="card-detail">
+            <span class="detail title">Link to profile: </span>
+            <span class="detail description">www.profile.com </span>
+          </div>
+        </div>
+    </details>
+</details>
