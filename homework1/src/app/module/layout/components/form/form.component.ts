@@ -45,7 +45,9 @@ export class FormComponent implements OnInit {
       BirthdateValidator.invalidBirthdate
     ]),
     gender: new FormControl("", Validators.required),
-    country: new FormControl("", Validators.required)
+    country: new FormControl("", Validators.required),
+    state: new FormControl("", Validators.required),
+    agree: new FormControl("", Validators.required)
   });
 
   get name() {
@@ -72,6 +74,10 @@ export class FormComponent implements OnInit {
     return this.form.get("country");
   }
 
+  get state() {
+    return this.form.get("state");
+  }
+
   get birthDate() {
     return this.form.get("birthDate");
   }
@@ -81,6 +87,10 @@ export class FormComponent implements OnInit {
   }
   get gender() {
     return this.form.get("gender");
+  }
+
+  get agree() {
+    return this.form.get("agree");
   }
 
   onSelected(country: string) {

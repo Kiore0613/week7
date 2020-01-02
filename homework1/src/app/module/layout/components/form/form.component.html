@@ -108,7 +108,7 @@
         >
           Field Confirm password is required
         </div>
-        <div class="error-text error" *ngIf="!password.value">
+        <div class="error-text error" *ngIf="confirmPassword.value != password.value">
           Passwords dont match
         </div>
       </div>
@@ -199,6 +199,7 @@
         name="country"
         (change)="onSelected(country.value)"
         formControlName="country"
+        [ngModel]="defaultSelect"
       >
         <option selected disabled [value]="defaultSelect"
           >Select your country</option
@@ -216,21 +217,28 @@
     <div class="states" [hidden]="!country.valid">
       <div class="group-container">
         <label>State:</label>
-        <select class="input-form" id="state" name="state">
-          <option selected disabled [value]="defaultState"
-            >Select your State</option
-          >
+        <select class="input-form" id="state" name="state" formControlName="state" [ngModel]="defaultState">
+          <option selected disabled [value]="defaultState"> Select your State</option> 
           <option *ngFor="let stateItem of selectedStates">
-            {{ stateItem }}</option
-          >
+            {{ stateItem }}</option> 
         </select>
+        <div class="error-text error" *ngIf="state.touched && state.invalid">
+          <div class="error-text error" *ngIf="state?.errors?.required">
+            Field State is required
+          </div>
+        </div>
       </div>
     </div>
     <div class="group-container">
       <label class="input-form">
         I Agree
-        <input type="checkbox" id="agree" name="agree" />
+        <input type="checkbox" id="agree" name="agree" formControlName="agree"/>
       </label>
+      <div class="error-text error" *ngIf="agree.touched && agree.invalid">
+        <div class="error-text error" *ngIf="agree?.errors?.required">
+          Field Agree is required
+        </div>
+      </div>
       <button class="input-form" type="submit">
         Submit
       </button>
