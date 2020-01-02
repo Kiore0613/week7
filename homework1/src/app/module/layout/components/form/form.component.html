@@ -1,5 +1,5 @@
-<form #form="ngForm" (ngSubmit)="submit(form)">
-  <div class="container" ngModelGroup="formGruop" #formGruop="ngModelGroup">
+<form [formGroup]="form"  (ngSubmit)="onSubmit(form)">
+  <div class="container">
     <div class="group-container">
       <label for="name">Name: </label>
       <input
@@ -7,21 +7,17 @@
         type="text"
         id="name"
         name="name"
-        ngModel
-        #name="ngModel"
-        minlength="4"
-        maxlength="15"
-        required
+        formControlName="name"
       />
-      <div class="error" *ngIf="name.touched && name.invalid">
-        <div class="error-text" *ngIf="name?.errors?.required">
+      <div class="error-text error" *ngIf="name.touched && name.invalid">
+        <div class="error-text error" *ngIf="name['errors'].required">
           Field Name is required
         </div>
-        <div class="error-text" *ngIf="name?.errors?.minlength">
+        <div class="error-text error" *ngIf="name['errors'].minlength">
           The minimum length is
-          {{ name?.errors?.minlength.requiredLength }} characters
+          {{ name.errors.minlength.requiredLength }} characters
         </div>
-        <div class="error-text" *ngIf="name?.errors?.maxlength">
+        <div class="error-text error" *ngIf="name['errors'].maxlength">
           The maximun length is
           {{ name?.errors?.maxlength.requiredLength }} characters
         </div>
@@ -33,24 +29,22 @@
         class="input-form"
         type="text"
         id="lastName"
-        name="lastName"
-        ngModel
-        #lastName="ngModel"
-        minlength="4"
-        maxlength="15"
-        required
+        formControlName="lastName"
       />
-      <div class="error" *ngIf="lastName.touched && lastName.invalid">
-        <div class="error-text" *ngIf="lastName?.errors?.required">
+      <div
+        class="error-text error"
+        *ngIf="lastName.touched && lastName.invalid"
+      >
+        <div class="error-text error" *ngIf="lastName['errors'].required">
           Field Last Name is required
         </div>
-        <div class="error-text" *ngIf="lastName?.errors?.minlength">
+        <div class="error-text error" *ngIf="lastName['errors'].minlength">
           The minimum length is
-          {{ lastName?.errors?.minlength.requiredLength }} characters
+          {{ lastName.errors.minlength.requiredLength }} characters
         </div>
-        <div class="error-text" *ngIf="lastName?.errors?.maxlength">
+        <div class="error-text error" *ngIf="lastName['errors'].maxlength">
           The maximun length is
-          {{ lastName?.errors?.maxlength.requiredLength }} characters
+          {{ lastName.errors?.maxlength.requiredLength }} characters
         </div>
       </div>
     </div>
@@ -61,16 +55,13 @@
         type="text"
         id="email"
         name="email"
-        ngModel
-        #email="ngModel"
-        required
-        appEmail
+        formControlName="email"
       />
-      <div class="error" *ngIf="email.touched && email.invalid">
-        <div class="error-text" *ngIf="email?.errors?.required">
+      <div class="error-text error" *ngIf="email.touched && email.invalid">
+        <div class="error-text error" *ngIf="email['errors'].required">
           Field Email is required
         </div>
-        <div class="error-text" *ngIf="email?.errors?.invalidEmailFormat">
+        <div class="error-text error" *ngIf="email['errors'].email">
           The Email format is invalid
         </div>
       </div>
@@ -82,18 +73,18 @@
         type="password"
         id="password"
         name="password"
-        ngModel
-        #password="ngModel"
-        minlength="6"
-        required
+        formControlName="password"
       />
-      <div class="error" *ngIf="password.touched && password.invalid">
-        <div class="error-text" *ngIf="password?.errors?.required">
+      <div
+        class="error-text error"
+        *ngIf="password.touched && password.invalid"
+      >
+        <div class="error-text error" *ngIf="password['errors'].required">
           Field Password is required
         </div>
-        <div class="error-text" *ngIf="password?.errors?.minlength">
+        <div class="error-text error" *ngIf="password['errors'].minlength">
           The minimum length is
-          {{ password?.errors?.minlength.requiredLength }} characters
+          {{ password.errors.minlength.requiredLength }} characters
         </div>
       </div>
     </div>
@@ -102,26 +93,22 @@
       <input
         class="input-form"
         type="password"
-        [pattern]="password.value"
         id="confirmPassword"
         name="confirmPassword"
-        ngModel
-        #confirmPassword="ngModel"
-        minlength="6"
-        required
+        formControlName="confirmPassword"
+        [pattern]="password.value"
       />
       <div
-        class="error"
+        class="error-text error"
         *ngIf="confirmPassword.touched && confirmPassword.invalid"
       >
-        <div class="error-text" *ngIf="confirmPassword?.errors?.required">
-          Field Confirm Password is required
+        <div
+          class="error-text error"
+          *ngIf="confirmPassword['errors'].required"
+        >
+          Field Confirm password is required
         </div>
-        <div class="error-text" *ngIf="confirmPassword?.errors?.minlength">
-          The minimum length is
-          {{ confirmPassword?.errors?.minlength.requiredLength }} digits
-        </div>
-        <div class="error-text" *ngIf="confirmPassword?.errors?.pattern">
+        <div class="error-text error" *ngIf="confirmPassword.value != password.value">
           Passwords dont match
         </div>
       </div>
@@ -133,16 +120,19 @@
         type="date"
         id="birthDate"
         name="birthDate"
-        ngModel
-        #birthDate="ngModel"
-        appBirthdate
-        required
+        formControlName="birthDate"
       />
-      <div class="error" *ngIf="birthDate.touched && birthDate.invalid">
-        <div class="error-text" *ngIf="birthDate?.errors?.required">
-          Field Birth date Number is required
+      <div
+        class="error-text error"
+        *ngIf="birthDate.touched && birthDate.invalid"
+      >
+        <div class="error-text error" *ngIf="birthDate['errors'].required">
+          Field Birth date is required
         </div>
-        <div class="error-text" *ngIf="birthDate?.errors?.invalidDate">
+        <div
+          class="error-text error"
+          *ngIf="birthDate.hasError('invalidDate')"
+        >
           The BirthDate must be lower than today
         </div>
       </div>
@@ -154,46 +144,23 @@
         type="text"
         id="telephone"
         name="telephone"
-        ngModel
-        #telephone="ngModel"
-        minlength="8"
-        maxlength="8"
-        appPhone
-        required
+        formControlName="phone"
       />
-      <div class="error" *ngIf="telephone.touched && telephone.invalid">
-        <div class="error-text" *ngIf="telephone?.errors?.required">
-          Field Telephone Number is required
+      <div class="error-text error" *ngIf="phone.touched && phone.invalid">
+        <div class="error-text error" *ngIf="phone.errors?.required">
+          Field Telephone is required
         </div>
-        <div class="error-text" *ngIf="telephone?.errors?.minlength">
-          The minimum length is
-          {{ telephone?.errors?.minlength.requiredLength }} characters
-        </div>
-        <div class="error-text" *ngIf="telephone?.errors?.invalidPhoneFormat">
-          The Telephone format is invalid
-        </div>
+      </div>
+      <div
+        class="error-text error"
+        *ngIf="phone.hasError('cannotContainsLetters')"
+      >
+        The Telephone format is invalid
       </div>
     </div>
     <div class="group-container">
       <label for="url">Personal site URL: </label>
-      <input
-        class="input-form"
-        type="text"
-        id="url"
-        name="url"
-        ngModel
-        #url="ngModel"
-        appUrl
-      />
-      <div class="error" *ngIf="url.dirty && url.invalid">
-        <div
-          class="error-text"
-          class="error-text"
-          *ngIf="url?.errors?.invalidUrlFormat"
-        >
-          The URL format is invalid
-        </div>
-      </div>
+      <input class="input-form" type="text" id="url" name="url" />
     </div>
     <div class="group-container">
       <label for="aboutMe">About me: </label>
@@ -201,27 +168,27 @@
         class="input-form"
         id="aboutMe"
         name="aboutMe"
-        ngModel
-        #aboutMe="ngModel"
         cols="40"
         rows="10"
       >
       </textarea>
     </div>
     <div class="group-container radio-group">
-      <div *ngFor="let gender of arrGenres">
-        <label [for]="gender.id">
-          {{ gender.genre }}
+      <div *ngFor="let genderOption of arrGenders">
+        <label [for]="genderOption.id">
+          {{ genderOption.gender }}
           <input
             type="radio"
-            [id]="gender.id"
-            name="genre"
-            [(ngModel)]="gender.id"
-            #genre="ngModel"
-            [value]="gender.id"
-            required
+            name="gender"
+            [value]="genderOption.id"
+            formControlName="gender"
           />
         </label>
+        <div class="error-text error" *ngIf="gender.touched && gender.invalid">
+          <div class="error-text error" *ngIf="gender?.errors?.required">
+            Field Gender is required
+          </div>
+        </div>
       </div>
     </div>
     <div class="group-container">
@@ -230,10 +197,9 @@
         class="input-form"
         id="country"
         name="country"
-        [ngModel]="defaultSelect"
-        #country="ngModel"
         (change)="onSelected(country.value)"
-        required
+        formControlName="country"
+        [ngModel]="defaultSelect"
       >
         <option selected disabled [value]="defaultSelect"
           >Select your country</option
@@ -242,51 +208,38 @@
           {{ countryItem.country }}</option
         >
       </select>
-      <div class="error" *ngIf="country.touched && country.invalid">
-        <div class="error-text" *ngIf="country?.errors?.required">
-          Field Name is required
+      <div class="error-text error" *ngIf="country.touched && country.invalid">
+        <div class="error-text error" *ngIf="country?.errors?.required">
+          Field country is required
         </div>
       </div>
     </div>
     <div class="states" [hidden]="!country.valid">
       <div class="group-container">
         <label>State:</label>
-        <select
-          class="input-form"
-          id="state"
-          name="state"
-          [ngModel]="defaultState"
-          #state="ngModel"
-          required
-        >
-          <option selected disabled [value]="defaultState"
-            >Select your State</option
-          >
+        <select class="input-form" id="state" name="state" formControlName="state" [ngModel]="defaultState">
+          <option selected disabled [value]="defaultState"> Select your State</option> 
           <option *ngFor="let stateItem of selectedStates">
-            {{ stateItem }}</option
-          >
+            {{ stateItem }}</option> 
         </select>
+        <div class="error-text error" *ngIf="state.touched && state.invalid">
+          <div class="error-text error" *ngIf="state?.errors?.required">
+            Field State is required
+          </div>
+        </div>
       </div>
-      <div class="error-text"></div>
     </div>
     <div class="group-container">
       <label class="input-form">
         I Agree
-        <input
-          type="checkbox"
-          id="agree"
-          name="agree"
-          ngModel
-          #agree="ngModel"
-          required
-        />
+        <input type="checkbox" id="agree" name="agree" formControlName="agree"/>
       </label>
-      <div class="error" *ngIf="agree.touched && agree.invalid">
-        <div class="error-text" *ngIf="agree?.errors?.required">
-          Field agree is required
+      <div class="error-text error" *ngIf="agree.touched && agree.invalid">
+        <div class="error-text error" *ngIf="agree?.errors?.required">
+          Field Agree is required
         </div>
       </div>
-      <button class="input-form" type="submit" [disabled]="!form.valid">
+      <button class="input-form" type="submit"  [disabled]="!form.valid">
         Submit
       </button>
     </div>
