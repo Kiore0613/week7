@@ -7,6 +7,7 @@ import { genders } from "../../mock/genders.mock";
 import { Country } from "../../models/country";
 import { countries } from "../../mock/countries.mock";
 import { BirthdateValidator } from "../../validators/birthdate.validator";
+import { MustMatch } from '../../validators/passwordMatch.validator';
 
 @Component({
   selector: "app-form",
@@ -44,7 +45,7 @@ export class FormComponent implements OnInit {
       Validators.required,
       BirthdateValidator.invalidBirthdate
     ]),
-    gender: new FormControl("", Validators.required),
+    gender: new FormControl("F", Validators.required),
     country: new FormControl("", Validators.required),
     state: new FormControl("", Validators.required),
     agree: new FormControl("", Validators.required)
@@ -107,9 +108,12 @@ export class FormComponent implements OnInit {
         });
     }
   }
+
+  onSubmit(form){
+    console.table(form.value)
+  }
   constructor() {}
 
   ngOnInit() {
-    console.log(this.selectedCountry, this.selectedStates);
   }
 }

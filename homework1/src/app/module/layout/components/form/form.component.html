@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form"  (ngSubmit)="onSubmit(form)">
   <div class="container">
     <div class="group-container">
       <label for="name">Name: </label>
@@ -131,7 +131,7 @@
         </div>
         <div
           class="error-text error"
-          *ngIf="birthDate?.hasError('invalidBirthdate')"
+          *ngIf="birthDate.hasError('invalidDate')"
         >
           The BirthDate must be lower than today
         </div>
@@ -239,7 +239,7 @@
           Field Agree is required
         </div>
       </div>
-      <button class="input-form" type="submit">
+      <button class="input-form" type="submit"  [disabled]="!form.valid">
         Submit
       </button>
     </div>
