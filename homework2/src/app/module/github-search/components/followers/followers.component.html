@@ -1,0 +1,22 @@
+<details [open]="isOpen">
+  <summary>
+    <div class="card-detail" >
+      <span class="detail">Followers </span>
+  </div>
+  </summary>
+    <details [open]="isOpen"  *ngFor="let follower of followers">
+      <summary>
+        <img [src]="follower?.avatar_url" alt="">
+        <h2>{{follower?.login}}</h2>
+      </summary>
+        <div class="card-container">
+          <div class="card-user">
+            <span>{{follower?.login}}</span>
+          </div>
+          <div class="card-detail">
+            <span class="detail title">Link to profile: </span>
+            <a class="detail description" [href]="follower?.html_url">{{follower?.html_url}} </a>
+          </div>
+        </div>
+    </details>
+</details>
