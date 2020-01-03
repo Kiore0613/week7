@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import {catchError} from "rxjs/operators";
-import {of, forkJoin} from "rxjs";
+import {of, forkJoin, Observable} from "rxjs";
 import { Follower } from '../models/followers';
 import { Repository } from '../models/repository';
 import { Profile } from '../models/profile';
+import { GithubProfile } from '../models/githubProfile';
 
 @Injectable({
   providedIn: "root"
@@ -20,9 +21,10 @@ export class GithubApiService {
     this.baseUrl = "https://api.github.com/users";
   }
 
-  getProfile(githubUser: Profile) {
-    return this.http.get(`${this.baseUrl}/${githubUser}?/${this.clientSecret}?/${this.clientId}`).pipe(
-        catchError((error: HttpErrorResponse) => of(error))
+  getProfile(githubUser: string) {
+    return this.http.get<GithubProfile>(`${this.baseUrl}/${githubUser}?/${this.clientSecret}?/${this.clientId}`)
+    .pipe(
+        catchError((error: HttpErrorResponse) => of(null) as Observable<GithubProfile>)
     );
   }
 

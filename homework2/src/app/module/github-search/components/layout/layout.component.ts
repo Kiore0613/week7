@@ -20,11 +20,11 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {}
 
-  searchProfile(user: Profile) {
+  searchProfile(user: string) {
     this.githubApiService
       .getProfile(user)
       .pipe(
-        concatMap((response: GithubRepositories) => {
+        concatMap((response: GithubProfile) => {
           this.profile = response;
           return this.githubApiService.getReposAndFollowers(
             response.repos_url,
@@ -38,7 +38,6 @@ export class LayoutComponent implements OnInit {
         }
         this.followers = searchResult[0];
         this.repositories = searchResult[1];
-        console.log(searchResult[1]);
       });
   }
 }
