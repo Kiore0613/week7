@@ -1,0 +1,12 @@
+<div class="container">
+  <app-search-profile (onSearch)="searchProfile($event)"></app-search-profile>
+  <div class="card-container" *ngIf="profile">
+    <app-github-profile [profile]="profile"></app-github-profile>
+    <app-followers *ngIf="followers" [followers]="followers"></app-followers>
+    <app-repositories
+      *ngIf="repositories"
+      [repositories]="repositories"
+    ></app-repositories>
+  </div>
+</div>
+
