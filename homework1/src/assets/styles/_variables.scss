@@ -1,0 +1,26 @@
+//Mixins sizes
+$screen-tablet: 768px;
+$screen-laptop: 1024px;
+
+//Colors
+$blue: #b2dfdb;
+$light-blue: #e5ffff;
+$dark-blue: #82ada9;
+$red: #f44336;
+$light-red: #ff7961;
+$dark-teal: #00867d;
+$primary: $blue;
+$primary-light: $light-blue;
+$primary-dark: $dark-blue;
+$error-color: $red;
+$warning-color: $light-red;
+$secondary-dark: $dark-teal;
+
+//Text size
+$header-size: 38px;
+$title-size: 24px;
+$subtitle-size: 20px;
+$text-size: 16px;
+
+//Typography
+$font-family: "helvetica";

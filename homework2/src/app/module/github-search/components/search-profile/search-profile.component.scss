@@ -1,0 +1,38 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.search {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  background: $primary-color;
+  color: $secondary-color;
+  margin: 8px auto;
+  padding: 8px;
+  border: 1px solid $secondary-color;
+  border-radius: 8px;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:hover {
+  background: $secondary-color;
+  color: $primary-color;
+}
+
+.header {
+  padding: 16px;
+  background: $primary-color;
+}
+
+.container {
+  display: grid;
+}
+@include screen-laptop {
+  .header {
+    width: 50%;
+    margin: 0 auto;
+  }
+}

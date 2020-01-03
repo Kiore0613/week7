@@ -1,0 +1,8 @@
+@import "../src/assets/styles/reset";
+
+body {
+  margin: $margin;
+  padding: $padding;
+  background: $backgroud;
+  background-repeat: $backgroud-repeat;
+}

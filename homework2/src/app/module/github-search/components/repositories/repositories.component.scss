@@ -1,0 +1,59 @@
+@import "styles/variables.scss";
+
+summary {
+  display: flex;
+  justify-content: center;
+}
+
+summary:hover{
+  background: $primary-font-color;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes open {
+  0% {opacity: 0; margin-left: -20px}
+  100% {opacity: 1; margin-left: 0px}
+}
+
+details[open] {
+  background: $background-color;
+}
+
+details[open] summary ~ * {
+  background: $secondary-color;
+  animation: open .5s ease-in-out;
+  cursor: pointer;
+
+}
+
+
+.card-detail {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 0 auto;
+  border-bottom: 1px solid $primary-color;
+}
+
+h2 {
+  padding: 8px;
+  font-family: $font-family;
+}
+
+.title {
+  display: flex;
+  align-self: flex-start;
+  font-style: oblique;
+  color: $primary-font-color;
+}
+
+.detail {
+  padding: 8px;
+  margin: 16px;
+  font-family: $font-family;
+  font-size: 16px;
+}
