@@ -1,34 +1,38 @@
 <div class="profile">
   <div class="card-user">
-    <img src="https://picsum.photos/200/300" alt="">
-    <span>Kiore0613</span>
+    <img [src]="profile?.avatar_url" alt="">
+    <span>{{profile?.name}}</span>
   </div>
   <div class="card-container">
-    <div class="card-detail">
+    <div class="card-detail" *ngIf="profile?.company">
       <span class="detail title">Company: </span>
-      <span class="detail description">Something </span>
+      <span class="detail description" >{{profile.company}} </span>
     </div>
     <div class="card-detail">
       <span class="detail title">Number Stars: </span>
-      <span class="detail description">16 </span>
+      <span class="detail description">{{profile?.public_gists}} </span>
     </div>
-    <div class="card-detail">
+    <div class="card-detail" *ngIf="profile?.blog">
       <span class="detail title">Website: </span>
-      <span class="detail description">www.angular.com </span>
+      <a class="detail description" [href]="profile?.blog">{{profile.blog}} </a>
     </div>
     <div class="card-detail">
       <span class="detail title">Member Since: </span>
-      <span class="detail description">october 20 </span>
+      <span class="detail description">{{profile?.created_at | date: 'dd/MM/yyyy'}}</span>
     </div>
     <div class="card-detail">
       <span class="detail title">Link to profile: </span>
-      <span class="detail description">www.profile.com </span>
+      <a class="detail description" [href]="profile?.html_url">{{profile?.html_url}} </a>
+    </div>
+    <div class="card-detail" *ngIf="profile?.location">
+      <span class="detail title">Location: </span>
+      <span class="detail description">{{profile.location}} </span>
     </div>
     <div class="card-detail">
-      <span class="detail title">Location: </span>
-      <span class="detail description">Something </span>
+      <span class="detail title">Followings: </span>
+      <span class="detail description">{{profile?.following}} </span>
     </div>
-    <app-followings></app-followings>
+    <app-followers></app-followers>
     <app-repositories></app-repositories>
   </div>
 </div>

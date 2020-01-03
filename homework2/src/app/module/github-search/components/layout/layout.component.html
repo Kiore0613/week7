@@ -1,2 +1,2 @@
-<app-search-profile></app-search-profile>
-<app-github-profile></app-github-profile>
+<app-search-profile (onSearch)="searchProfile($event)"></app-search-profile>
+<app-github-profile *ngIf="profile" [profile]="profile"></app-github-profile>
