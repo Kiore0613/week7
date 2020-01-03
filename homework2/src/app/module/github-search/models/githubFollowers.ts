@@ -1,4 +1,4 @@
-export interface GithubFollowings {
+export interface GithubFollowers {
   login: string;
   id: number;
   node_id: string;

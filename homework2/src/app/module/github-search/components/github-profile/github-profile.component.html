@@ -1,38 +1,42 @@
 <div class="profile">
   <div class="card-user">
-    <img [src]="profile?.avatar_url" alt="">
-    <span>{{profile?.name}}</span>
+    <img [src]="profile?.avatar_url" alt="" />
+    <span>{{ profile?.name }}</span>
   </div>
   <div class="card-container">
     <div class="card-detail" *ngIf="profile?.company">
       <span class="detail title">Company: </span>
-      <span class="detail description" >{{profile.company}} </span>
+      <span class="detail description">{{ profile.company }} </span>
     </div>
     <div class="card-detail">
       <span class="detail title">Number Stars: </span>
-      <span class="detail description">{{profile?.public_gists}} </span>
+      <span class="detail description">{{ profile?.public_gists }} </span>
     </div>
     <div class="card-detail" *ngIf="profile?.blog">
       <span class="detail title">Website: </span>
-      <a class="detail description" [href]="profile?.blog">{{profile.blog}} </a>
+      <a class="detail description" [href]="profile?.blog"
+        >{{ profile.blog }}
+      </a>
     </div>
     <div class="card-detail">
       <span class="detail title">Member Since: </span>
-      <span class="detail description">{{profile?.created_at | date: 'dd/MM/yyyy'}}</span>
+      <span class="detail description">{{
+        profile?.created_at | date: "dd/MM/yyyy"
+      }}</span>
     </div>
     <div class="card-detail">
       <span class="detail title">Link to profile: </span>
-      <a class="detail description" [href]="profile?.html_url">{{profile?.html_url}} </a>
+      <a class="detail description" [href]="profile?.html_url"
+        >{{ profile?.html_url }}
+      </a>
     </div>
     <div class="card-detail" *ngIf="profile?.location">
       <span class="detail title">Location: </span>
-      <span class="detail description">{{profile.location}} </span>
+      <span class="detail description">{{ profile.location }} </span>
     </div>
     <div class="card-detail">
       <span class="detail title">Followings: </span>
-      <span class="detail description">{{profile?.following}} </span>
+      <span class="detail description">{{ profile?.following }} </span>
     </div>
-    <app-followers></app-followers>
-    <app-repositories></app-repositories>
   </div>
 </div>

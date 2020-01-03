@@ -3,7 +3,8 @@ import { GithubApiService } from "../../services/github-api.service";
 import { GithubProfile } from "../../models/githubProfile";
 import { Profile } from "../../models/profile";
 import { GithubRepositories } from "../../models/githubRepositories";
-import { concatMap } from 'rxjs/operators';
+import { concatMap } from "rxjs/operators";
+import { GithubFollowers } from "../../models/githubFollowers";
 
 @Component({
   selector: "app-layout",
@@ -12,29 +13,32 @@ import { concatMap } from 'rxjs/operators';
 })
 export class LayoutComponent implements OnInit {
   profile: GithubProfile;
+  followers: GithubFollowers;
+  repositories: GithubRepositories;
   error: string;
   constructor(private githubApiService: GithubApiService) {}
 
-  
   ngOnInit() {}
 
   searchProfile(user: Profile) {
     this.githubApiService
       .getProfile(user)
       .pipe(
-        concatMap( (response: GithubRepositories) => {
-          console.table(response.repos_url);
-          console.table(response);
+        concatMap((response: GithubRepositories) => {
           this.profile = response;
-          return this.githubApiService.getReposAndFollowers(response.repos_url, response.followers_url);
-        } )
+          return this.githubApiService.getReposAndFollowers(
+            response.repos_url,
+            response.followers_url
+          );
+        })
       )
-      .subscribe((searchResult) => {
-        if(searchResult.length == 0){
+      .subscribe(searchResult => {
+        if (searchResult.length == 0) {
           this.error = "Not found";
-          console.log(this.error);
         }
-        console.log(searchResult);
+        this.followers = searchResult[0];
+        this.repositories = searchResult[1];
+        console.log(searchResult[1]);
       });
   }
 }
