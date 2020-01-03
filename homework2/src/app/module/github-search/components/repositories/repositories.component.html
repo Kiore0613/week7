@@ -2,33 +2,36 @@
   <summary>
     <div class="card-detail">
       <span class="detail">Repositories </span>
-  </div>
+    </div>
   </summary>
-    <details [open]="isOpen" *ngFor="let repository of repositories">
-      <summary>
-        <h2>{{repository?.name}}</h2>
-      </summary>
-        <div class="card-container">
-          <div class="card-detail">
-            <span class="detail title">Name </span>
-            <span class="detail description">{{repository?.name}}</span>
-          </div>
-          <div class="card-detail">
-            <span class="detail title">Number stars</span>
-            <span class="detail description">{{repository?.stargazers_count}} </span>
-          </div>
-          <div class="card-detail">
-            <span class="detail title">Number of Forks</span>
-            <span class="detail description">{{repository?.forks_count}} </span>
-          </div>
-          <div class="card-detail">
-            <span class="detail title">Number of Watchers</span>
-            <span class="detail description">{{repository?.watchers_count}}</span>
-          </div>
-          <div class="card-detail">
-            <span class="detail title">Link to Repository </span>
-            <a class="detail description" [href]="repository?.html_url">{{repository?.html_url}}</a>
-          </div>
-        </div>
-    </details>
+  <details [open]="isOpen" *ngFor="let repository of repositories">
+    <summary>
+      <h2>{{ repository?.name }}</h2>
+    </summary>
+    <div class="card-container">
+      <div class="card-detail">
+        <span class="detail title">Name </span>
+        <span class="detail description">{{ repository?.name }}</span>
+      </div>
+      <div class="card-detail">
+        <span class="detail title">Number stars</span>
+        <span class="detail description"
+          >{{ repository?.stargazers_count }}
+        </span>
+      </div>
+      <div class="card-detail">
+        <span class="detail title">Number of Forks</span>
+        <span class="detail description">{{ repository?.forks_count }} </span>
+      </div>
+      <div class="card-detail">
+        <span class="detail title">Number of Watchers</span>
+        <span class="detail description">{{ repository?.watchers_count }}</span>
+      </div>
+      <div class="card-detail">
+        <a class="detail title" [href]="repository?.html_url"
+          >Link to Repository
+        </a>
+      </div>
+    </div>
+  </details>
 </details>
